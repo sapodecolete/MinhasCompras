@@ -4,10 +4,10 @@ namespace MinhasCompras.Views;
 
 public partial class NovoProduto : ContentPage
 {
-	public NovoProduto()
-	{
-		InitializeComponent();
-	}
+    public NovoProduto()
+    {
+        InitializeComponent();
+    }
 
     private async void ToolbarItem_Clicked(object sender, EventArgs e)
     {
@@ -22,6 +22,7 @@ public partial class NovoProduto : ContentPage
 
             await App.Db.Insert(p);
             await DisplayAlert("Sucesso!", "Registro Inserido", "OK");
+            await Navigation.PopAsync();
 
         }
         catch (Exception ex)
@@ -29,5 +30,4 @@ public partial class NovoProduto : ContentPage
             await DisplayAlert("Ops", ex.Message, "OK");
         }
     }
-
 }
