@@ -1,4 +1,6 @@
-﻿namespace MinhasCompras
+﻿using MinhasCompras.Views;
+
+namespace MinhasCompras
 {
     public partial class MainPage : ContentPage
     {
@@ -19,6 +21,11 @@
                 CounterBtn.Text = $"Clicked {count} times";
 
             SemanticScreenReader.Announce(CounterBtn.Text);
+        }
+
+        private async void OnRelatorioClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RelatorioPage());
         }
     }
 

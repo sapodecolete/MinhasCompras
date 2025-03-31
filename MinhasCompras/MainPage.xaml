@@ -30,6 +30,10 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+
+            <Button Text="Relatório" 
+        Clicked="OnRelatorioClicked" 
+        BackgroundColor="{StaticResource Primary}"/>
         </VerticalStackLayout>
     </ScrollView>
 

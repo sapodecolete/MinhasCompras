@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="MinhasCompras.Views.RelatorioPage"
+             Title="RelatorioPage">
+    <StackLayout Padding="20">
+        <Label Text="Filtrar por Período" FontSize="Medium" FontAttributes="Bold"/>
+        <Label Text="Data Início:"/>
+        <DatePicker x:Name="dataInicioPicker" Format="dd/MM/yyyy"/>
+        <Label Text="Data Fim:"/>
+        <DatePicker x:Name="dataFimPicker" Format="dd/MM/yyyy" Date="{x:Static sys:DateTime.Now}"/>
+        <Button Text="Filtrar" Clicked="OnFiltrarClicked"/>
+        <ListView x:Name="listaProdutos">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Descricao}" 
+                              Detail="{Binding DataCadastro, StringFormat='Comprado em: {0:dd/MM/yyyy}'}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

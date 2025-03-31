@@ -43,5 +43,25 @@ namespace MinhasCompras.Helpers
 
             return _conn.QueryAsync<Produto>(sql);
         }
+
+        public Task<List<Produto>> GetByDateRange(DateTime dataInicio, DateTime dataFim)
+        {
+            // Adiciona 1 dia para incluir a data final completa
+            DateTime dataFimAjustada = dataFim.Date.AddDays(1);
+
+            return _conn.Table<Produto>()
+                       .Where(p => p.DataCadastro >= dataInicio.Date &&
+                                 p.DataCadastro < dataFimAjustada)
+                       .OrderByDescending(p => p.DataCadastro)
+                       .ToListAsync();
+        }
+
+        // MÉTODO AUXILIAR PARA ATUALIZAR O BANCO (OPCIONAL)
+        public async Task UpdateDatabase()
+        {
+            // Adiciona a coluna DataCadastro se não existir
+            await _conn.ExecuteAsync(
+                "ALTER TABLE Produto ADD COLUMN DataCadastro DATETIME DEFAULT CURRENT_TIMESTAMP");
+        }
     }
 }
